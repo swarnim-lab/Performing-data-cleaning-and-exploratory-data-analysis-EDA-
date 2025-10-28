@@ -1,0 +1,20 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+url = "https://raw.githubusercontent.com/datasets/co2-fossil-global/master/global.csv"
+data = pd.read_csv(url)
+
+values = data["Total"]
+
+sns.set(style="whitegrid")
+
+plt.figure(figsize=(10, 6))
+sns.histplot(values, bins=30, kde=True, color="#0077b6", edgecolor="white", log_scale=True)
+
+plt.title("Global CO2 Emissions Distribution 🌍", fontsize=16, weight="bold")
+plt.xlabel("Total CO2 Emissions (Million Tonnes)", fontsize=12)
+plt.ylabel("Frequency (log scale)", fontsize=12)
+
+plt.tight_layout()
+plt.show()

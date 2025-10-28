@@ -1,0 +1,31 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+plt.rcParams['text.usetex'] = False  # disable LaTeX if not installed
+plt.rcParams['mathtext.default'] = 'regular'
+
+# Data
+data = {
+    "Year": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+    "CO2_Emissions": [36.2, 36.4, 36.8, 37.2, 37.1, 34.8, 36.3, 37.5, 38.1, 38.6, 39.0]
+}
+df = pd.DataFrame(data)
+
+sns.set(style="whitegrid")
+plt.figure(figsize=(10,6))
+
+plt.plot(df["Year"], df["CO2_Emissions"], color="steelblue", linewidth=3, marker="o")
+plt.scatter(2025, 39.0, color="red", s=100, zorder=5)
+plt.text(2025, 38.7, "2025", color="red", fontsize=11, ha="center", fontweight="bold")
+
+# ✅ Using TeX syntax for CO₂
+plt.title(r"Growth of Global CO$_2$ Emissions (2015–2025)", fontsize=16, weight='bold', pad=20)
+plt.xlabel("Year", fontsize=12)
+plt.ylabel(r"CO$_2$ Emissions (Billion Tonnes)", fontsize=12)
+
+sns.despine()
+plt.grid(alpha=0.3)
+plt.tight_layout()
+plt.savefig("co2_emission_trend.png", dpi=300, bbox_inches="tight")
+plt.show()
